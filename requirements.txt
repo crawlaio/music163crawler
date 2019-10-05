@@ -1,3 +1,5 @@
 scrapy
 scrapy-redis-sentinel
 pymongo
+pycrypto
+redis
