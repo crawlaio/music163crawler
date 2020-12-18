@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import base64
 import binascii
 import json
@@ -5,21 +6,17 @@ import random
 
 from Crypto.Cipher import AES
 
-secret_key = b"0CoJUm6Qyw8W8jud"
-pub_key = "010001"
-modulus = "00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7"
-
 
 def aes_encrypt(text, key):
     pad = 16 - len(text) % 16
     try:
         text = text.decode()
-    except:
+    except Exception as e:
         pass
     text = text + pad * chr(pad)
     try:
         text = text.encode()
-    except:
+    except Exception as e:
         pass
     encryptor = AES.new(key, AES.MODE_CBC, b"0102030405060708")
     ciphertext = encryptor.encrypt(text)
@@ -34,6 +31,9 @@ def rsa_encrypt(ran_16, pub_key, modulus):
 
 
 def encrypt_data(song_id, page):
+    secret_key = b"0CoJUm6Qyw8W8jud"
+    pub_key = "010001"
+    modulus = "00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7"
     data = {
         "rid": "R_SO_4_{0}".format(song_id),
         "offset": str((page - 1) * 20),
