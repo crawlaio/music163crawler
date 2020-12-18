@@ -23,8 +23,3 @@ class Music163MusicItem(scrapy.Item):
     time = scrapy.Field()
     liked_count = scrapy.Field()
     comment_total = scrapy.Field()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for key in self.fields.keys():
-            self.setdefault(key, None)

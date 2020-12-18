@@ -27,11 +27,6 @@ class MongoDBPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
-        """
-        :param item: 传入的item数据
-        :param spider: spider相关信息
-        :return item:
-        """
         self.db[spider.name].update_one(
             filter={"comment_id": item["comment_id"], "song_id": item["song_id"]},
             update={"$setOnInsert": dict(item)},
